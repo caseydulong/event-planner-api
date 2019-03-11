@@ -1,5 +1,5 @@
-class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :update, :destroy]
+class EventsController < ProtectedController
+  before_action :set_event, only: %i[show update destroy]
 
   # GET /events
   def index
@@ -39,13 +39,14 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def event_params
-      params.require(:event).permit(:name, :start_date, :end_date, :start_time, :end_time, :location)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = current_user.events.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def event_params
+    params.require(:event).permit(:name, :start_date, :end_date, :start_time, :end_time, :location)
+  end
 end
