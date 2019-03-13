@@ -9,11 +9,6 @@ class EventsController < ProtectedController
 
     render json: @events
   end
-  # def index
-  #   @events = Event.all
-  #
-  #   render json: @events
-  # end
 
   # GET /events/1
   def show
@@ -22,7 +17,7 @@ class EventsController < ProtectedController
 
   # POST /events
   def create
-    @event = Event.new(event_params)
+    @event = current_user.events.new(event_params)
 
     if @event.save
       render json: @event, status: :created, location: @event
