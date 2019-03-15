@@ -23,3 +23,4 @@ My original [ERD](https://i.imgur.com/6i0MW4F.jpg) allowed for guests to be invi
 ## Future Features
 - Add ability to invite guests to events.
 - Add ability to make public events.  Display public events on a home screen of sorts for all users to see when they log in.
+- Add a description column to events table.
